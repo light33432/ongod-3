@@ -354,3 +354,8 @@ app.listen(PORT, HOST, () => {
   console.log('Public URL: https://ongod-phone-gadget-1.onrender.com');
   console.log('==> Your service is live 🎉');
 });
+
+// --- ADDITIONAL: Serve favicon.ico if present ---
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(__dirname, 'favicon.ico'));
+});
