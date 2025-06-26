@@ -295,7 +295,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!document.getElementById('care-chat-float')) {
     const floatBtn = document.createElement('button');
     floatBtn.id = 'care-chat-float';
-    floatBtn.innerHTML = '<img src="images/customer care.jpg" alt="Care" style="width:32px;height:32px;border-radius:50%;">';
+    // Use the correct filename for the image
+    floatBtn.innerHTML = '<img src="images/customercare.jpg" alt="Care" style="width:32px;height:32px;border-radius:50%;">';
     floatBtn.style.cssText = 'position:fixed;bottom:100px;right:30px;background:#2ecc71;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 2px 8px rgba(0,0,0,0.18);z-index:10003;cursor:pointer;';
     document.body.appendChild(floatBtn);
     floatBtn.onclick = () => {
