@@ -18,11 +18,6 @@ app.use('/admin', express.static(path.join(__dirname, 'admin')));
 // Serve static files from root (for index.html, script.js, etc.)
 app.use(express.static(__dirname));
 
-// --- Health check endpoint ---
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
-});
-
 let users = [];
 let gadgets = {
   phones: [
@@ -346,16 +341,4 @@ app.get('/api/notifications', (req, res) => {
   res.json({ notifications: all });
 });
 
-// --- PUBLIC SERVER LISTEN (Render/Cloud/Production ready) ---
-const PORT = process.env.PORT || 3000;
-const HOST = '0.0.0.0';
-app.listen(PORT, HOST, () => {
-  console.log(`Backend running on http://${HOST}:${PORT} (public on Render)`);
-  console.log('Public URL: https://ongod-phone-gadget-1.onrender.com');
-  console.log('==> Your service is live 🎉');
-});
-
-// --- ADDITIONAL: Serve favicon.ico if present ---
-app.get('/favicon.ico', (req, res) => {
-  res.sendFile(path.join(__dirname, 'favicon.ico'));
-});
+app.listen(3000, () => console.log('Server running on port 3000'));

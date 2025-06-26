@@ -1,8 +1,5 @@
 // --- Modal & Auth Logic ---
 document.addEventListener('DOMContentLoaded', () => {
-  // Set your backend API base URL here (public Render URL)
-  const API_BASE = 'https://ongod-phone-gadget-1.onrender.com';
-
   // Elements
   const loginModal = document.getElementById('login-modal');
   const loginBox = document.getElementById('login-box');
@@ -43,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function autoLogin() {
     if (token) {
       try {
-        const res = await fetch(`${API_BASE}/api/me`, {
+        const res = await fetch('http://localhost:3000/api/me', {
           headers: { 'Authorization': 'Bearer ' + token }
         });
         const data = await res.json();
@@ -66,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function syncNotificationsFromBackend() {
     if (!currentUser || !currentUser.email) return;
     try {
-      const res = await fetch(`${API_BASE}/api/notifications?email=${encodeURIComponent(currentUser.email)}`);
+      const res = await fetch(`http://localhost:3000/api/notifications?email=${encodeURIComponent(currentUser.email)}`);
       const data = await res.json();
       if (data && Array.isArray(data.notifications)) {
         notificationHistory = data.notifications;
@@ -139,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     try {
-      const res = await fetch(`${API_BASE}/api/login`, {
+      const res = await fetch('http://localhost:3000/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -177,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     try {
-      const res = await fetch(`${API_BASE}/api/register`, {
+      const res = await fetch('http://localhost:3000/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, phone, username, password, state, area, street, address })
@@ -216,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     try {
-      const res = await fetch(`${API_BASE}/api/verify`, {
+      const res = await fetch('http://localhost:3000/api/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code })
@@ -281,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadChatHistory() {
     if (!currentUser) return;
     try {
-      const res = await fetch(`${API_BASE}/api/chat?email=${encodeURIComponent(currentUser.email)}`);
+      const res = await fetch(`http://localhost:3000/api/chat?email=${encodeURIComponent(currentUser.email)}`);
       const data = await res.json();
       careChatMessages.innerHTML = '';
       (data.chat || []).forEach(m => {
@@ -298,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!document.getElementById('care-chat-float')) {
     const floatBtn = document.createElement('button');
     floatBtn.id = 'care-chat-float';
-    floatBtn.innerHTML = '<img src="images/customer-care.jpg" alt="Care" style="width:32px;height:32px;border-radius:50%;">';
+    floatBtn.innerHTML = '<img src="images/customer care.jpg" alt="Care" style="width:32px;height:32px;border-radius:50%;">';
     floatBtn.style.cssText = 'position:fixed;bottom:100px;right:30px;background:#2ecc71;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 2px 8px rgba(0,0,0,0.18);z-index:10003;cursor:pointer;';
     document.body.appendChild(floatBtn);
     floatBtn.onclick = () => {
@@ -316,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg = careChatInput.value.trim();
     if (!msg || !currentUser) return;
     // Send to backend
-    await fetch(`${API_BASE}/api/chat`, {
+    await fetch('http://localhost:3000/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: currentUser.email, msg })
@@ -468,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let phones = [], laptops = [], accessories = [];
   async function fetchGadgets() {
     try {
-      const res = await fetch(`${API_BASE}/api/gadgets`);
+      const res = await fetch('http://localhost:3000/api/gadgets');
       const data = await res.json();
       phones = data.phones;
       laptops = data.laptops;
@@ -524,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function sendOrderToAdmin(order) {
     try {
       // Send order to backend (admin)
-      const res = await fetch(`${API_BASE}/api/order`, {
+      const res = await fetch('http://localhost:3000/api/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(order)
@@ -543,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function pollAdminAction(order) {
     let interval = setInterval(async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/order-status?email=${encodeURIComponent(order.email)}&item=${encodeURIComponent(order.item.name)}`);
+        const res = await fetch(`http://localhost:3000/api/order-status?email=${encodeURIComponent(order.email)}&item=${encodeURIComponent(order.item.name)}`);
         const data = await res.json();
         if (data && data.status && data.status !== 'pending') {
           clearInterval(interval);
@@ -569,13 +566,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render
   fetchGadgets();
-
-  // --- ADDITIONAL: Handle missing images gracefully ---
-  // This will replace all broken images with a placeholder after DOM is loaded
-  document.querySelectorAll('img').forEach(img => {
-    img.onerror = function() {
-      this.onerror = null;
-      this.src = 'images/placeholder.png';
-    };
-  });
 });
