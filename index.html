@@ -2,80 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ONGOD PHONE GADGET</title>
+  <title>Phone Gadget Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <script src="script.js" defer></script>
   <style>
     body {
       font-family: 'Inter', Arial, sans-serif;
-      background: linear-gradient(135deg, #e0e7ff 0%, #f7f9fb 100%);
+      background: #f4f6fa;
       margin: 0;
-      padding: 0;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .header-container {
+    header {
       background: linear-gradient(90deg, #1a237e 60%, #3949ab 100%);
       color: #fff;
-      padding: 22px 0 16px 0;
-      box-shadow: 0 2px 16px rgba(26,35,126,0.13);
-    }
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
+      padding: 32px 0 18px 0;
+      text-align: center;
+      box-shadow: 0 2px 8px #0002;
       position: relative;
     }
-    .header-logo {
-      display: flex;
-      align-items: center;
-    }
-    .header-logo img {
-      width: 54px;
-      height: 54px;
-      border-radius: 12px;
-      margin-right: 16px;
-      box-shadow: 0 2px 8px rgba(26,35,126,0.18);
-    }
-    .header-title {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-shadow: 0 2px 8px rgba(26,35,126,0.18);
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+      letter-spacing: 1px;
     }
     .header-actions {
       position: absolute;
       right: 32px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 32px;
     }
-    #notification-btn {
-      width: 36px;
-      height: 36px;
+    .header-actions button {
+      background: #fff;
+      color: #3949ab;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1em;
+      padding: 8px 18px;
+      margin-left: 10px;
       cursor: pointer;
-      transition: transform 0.2s;
-      position: relative;
+      box-shadow: 0 1px 4px #0001;
+      transition: background 0.2s, color 0.2s;
     }
-    #notification-btn:hover {
-      transform: scale(1.12);
-    }
-    .notif-dot {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      width: 13px;
-      height: 13px;
-      background: #e74c3c;
-      border-radius: 50%;
-      border: 2px solid #fff;
+    .header-actions button:hover {
+      background: #3949ab;
+      color: #fff;
     }
     .search-bar {
       max-width: 600px;
-      margin: 38px auto 0 auto;
+      margin: 32px auto 0 auto;
       display: flex;
       gap: 10px;
       justify-content: center;
@@ -109,97 +87,91 @@
       background: #1a237e;
       box-shadow: 0 4px 16px rgba(26,35,126,0.18);
     }
-    main {
+    .container {
+      flex: 1;
       max-width: 1200px;
-      margin: 38px auto;
-      padding: 0 32px;
+      margin: 32px auto 24px auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 32px 24px 40px 24px;
     }
-    .main-title {
-      font-size: 2.3rem;
-      font-weight: 700;
-      color: #1a237e;
-      margin-bottom: 28px;
-      text-align: center;
-      letter-spacing: 1.5px;
+    .category-section {
+      margin-bottom: 38px;
     }
-    .section-title {
-      font-size: 1.35rem;
-      font-weight: 700;
+    .category-title {
+      font-size: 1.5em;
       color: #3949ab;
-      margin: 36px 0 18px 0;
+      font-weight: 700;
+      margin: 18px 0 18px 0;
       letter-spacing: 1px;
+      border-left: 5px solid #3949ab;
+      padding-left: 12px;
     }
-    .Gadget-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 28px;
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: flex-start;
     }
-    .Gadget-item {
-      background: linear-gradient(135deg, #fff 60%, #e3e8ff 100%);
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(26,35,126,0.10);
-      padding: 22px 16px 24px 16px;
+    .product {
+      background: #f9f9ff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px #0001;
+      padding: 18px 12px 22px 12px;
+      width: 260px;
+      text-align: center;
+      transition: transform 0.15s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: box-shadow 0.2s, transform 0.2s;
-      border: 1.5px solid #e0e7ff;
     }
-    .Gadget-item:hover {
-      box-shadow: 0 8px 32px rgba(26,35,126,0.18);
-      transform: translateY(-4px) scale(1.03);
+    .product:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 4px 16px #3949ab22;
     }
-    .Gadget-item img {
-      width: 110px;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 14px;
-      background: #f0f2f5;
-      box-shadow: 0 2px 8px rgba(26,35,126,0.10);
+    .product img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 4px #0001;
     }
-    .Gadget-item h2 {
-      font-size: 1.18rem;
-      font-weight: 700;
-      margin: 0 0 10px 0;
+    .product h2 {
+      font-size: 1.15em;
+      margin: 10px 0 6px;
       color: #1a237e;
-      text-align: center;
-    }
-    .Gadget-item p {
-      color: #3949ab;
       font-weight: 700;
-      margin: 0 0 14px 0;
-      font-size: 1.08rem;
     }
-    .button-group {
-      display: flex;
-      gap: 12px;
+    .product p {
+      margin: 6px 0;
+      color: #444;
     }
-    .button-group button {
-      padding: 10px 18px;
+    .product .price {
+      color: #3949ab;
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 8px;
+    }
+    .product .buy-now-btn {
+      margin-top: 10px;
+      padding: 10px 22px;
+      background: linear-gradient(90deg, #3949ab 60%, #1a237e 100%);
+      color: #fff;
       border: none;
       border-radius: 8px;
       font-weight: 700;
+      font-size: 1.05em;
       cursor: pointer;
-      background: linear-gradient(90deg, #3949ab 60%, #1a237e 100%);
-      color: #fff;
-      font-size: 1.02rem;
       transition: background 0.2s, box-shadow 0.2s;
-      box-shadow: 0 2px 8px rgba(26,35,126,0.10);
+      box-shadow: 0 2px 8px #3949ab22;
     }
-    .button-group button:hover {
+    .product .buy-now-btn:hover {
       background: #1a237e;
-      box-shadow: 0 4px 16px rgba(26,35,126,0.18);
     }
-    .footer {
-      background: linear-gradient(90deg, #1a237e 60%, #3949ab 100%);
-      color: #fff;
-      text-align: center;
-      padding: 22px 0;
-      margin-top: 54px;
-      font-size: 1.08rem;
-      letter-spacing: 1px;
-    }
+    /* Modal styles */
     .modal-bg {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -210,45 +182,33 @@
       z-index: 10000;
     }
     .modal-content {
-      background: linear-gradient(135deg, #fff 60%, #e3e8ff 100%);
-      border-radius: 18px;
-      padding: 36px 28px 28px 28px;
-      max-width: 370px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px 24px 24px;
+      max-width: 400px;
       width: 100%;
-      box-shadow: 0 8px 32px rgba(26,35,126,0.18);
+      box-shadow: 0 8px 32px #3949ab22;
       position: relative;
       text-align: center;
     }
     .modal-content img {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
-      border-radius: 14px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(26,35,126,0.10);
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 4px #0001;
     }
     .modal-content h2 {
       margin: 0 0 10px 0;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: #1a237e;
       font-weight: 700;
     }
     .modal-content p {
-      margin: 0 0 20px 0;
+      margin: 0 0 14px 0;
       color: #3949ab;
       font-size: 1.08rem;
-    }
-    .modal-content button {
-      background: #2ecc71;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 26px;
-      font-size: 1.08em;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.2s;
     }
     .modal-content .close-btn {
       position: absolute;
@@ -259,21 +219,15 @@
       color: #888;
       cursor: pointer;
     }
-    @media (max-width: 900px) {
-      .header-content, main { padding: 0 10px; }
-      .Gadget-list { grid-template-columns: 1fr 1fr; }
+    .modal-content iframe {
+      width: 100%;
+      height: 200px;
+      border: 0;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
-    @media (max-width: 600px) {
-      .header-title { font-size: 1.2rem; }
-      .Gadget-list { grid-template-columns: 1fr; }
-      .header-content { padding: 0 4px; }
-      main { padding: 0 4px; }
-    }
-    #register-form-modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(26,35,126,0.18); align-items:center; justify-content:center; z-index:10001; }
-    #register-form-modal > div { background:#fff; border-radius:12px; padding:32px 24px; box-shadow:0 2px 16px rgba(26,35,126,0.13); }
-    #register-form-modal input, #register-form-modal select { display:block; width:100%; margin-bottom:12px; padding:10px; border-radius:6px; border:1px solid #b3b8e0; }
-    #register-form-modal button { margin-right:8px; }
-    #login-modal {
+    /* Login/Register Modal */
+    .auth-modal-bg {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(26,35,126,0.18);
@@ -282,221 +236,166 @@
       justify-content: center;
       z-index: 10001;
     }
-    #login-box {
+    .auth-modal {
       background: #fff;
-      border-radius: 12px;
-      padding: 32px 24px;
-      box-shadow: 0 2px 16px rgba(26,35,126,0.13);
-      min-width: 320px;
-      text-align: center;
-    }
-    #login-box input {
-      display: block;
+      border-radius: 18px;
+      padding: 38px 28px 30px 28px;
+      max-width: 380px;
       width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #b3b8e0;
+      box-shadow: 0 8px 32px #3949ab33, 0 1.5px 8px #1a237e11;
+      text-align: center;
+      position: relative;
+      animation: popIn 0.25s cubic-bezier(.4,2,.6,1) 1;
     }
-    #login-box button {
-      margin: 10px 5px 0 5px;
-      padding: 10px 20px;
+    @keyframes popIn {
+      0% { transform: scale(0.92); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .auth-modal h2 {
+      color: #1a237e;
+      margin-bottom: 22px;
+      font-size: 1.45em;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .auth-modal input,
+    .auth-modal select {
+      width: 100%;
+      padding: 13px 14px;
+      margin-bottom: 14px;
       border-radius: 8px;
-      border: none;
-      background: #3949ab;
+      border: 1.5px solid #b3b8e0;
+      font-size: 1.08em;
+      background: #f7f8fd;
+      color: #222;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      outline: none;
+    }
+    .auth-modal input:focus,
+    .auth-modal select:focus {
+      border-color: #3949ab;
+      background: #fff;
+      box-shadow: 0 2px 8px #3949ab22;
+    }
+    .auth-modal button:not(.close-btn) {
+      margin-top: 10px;
+      padding: 12px 0;
+      width: 100%;
+      background: linear-gradient(90deg, #3949ab 60%, #1a237e 100%);
       color: #fff;
+      border: none;
+      border-radius: 8px;
       font-weight: 700;
+      font-size: 1.08em;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #3949ab22;
+      letter-spacing: 0.5px;
     }
-    #login-box button:hover {
+    .auth-modal button:not(.close-btn):hover {
       background: #1a237e;
+      box-shadow: 0 4px 16px #3949ab33;
     }
-    .switch-link {
+    .auth-modal .close-btn {
+      position: absolute;
+      top: 14px; right: 20px;
+      background: none;
+      border: none;
+      font-size: 2em;
+      color: #bbb;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .auth-modal .close-btn:hover {
+      color: #3949ab;
+    }
+    .auth-switch {
       color: #3949ab;
       cursor: pointer;
-      font-size: 0.98em;
-      margin: 0 4px;
+      font-size: 1em;
+      margin-top: 14px;
       text-decoration: underline;
+      display: inline-block;
+      font-weight: 600;
+      letter-spacing: 0.2px;
     }
-    #verify-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(26,35,126,0.18);
-      align-items: center;
-      justify-content: center;
-      z-index: 10002;
+    .auth-error {
+      color: #e74c3c;
+      margin-top: 10px;
+      min-height: 18px;
+      font-size: 1em;
+      font-weight: 500;
     }
-    #verify-modal > div {
-      background: #fff;
-      border-radius: 12px;
-      padding: 32px 24px;
-      box-shadow: 0 2px 16px rgba(26,35,126,0.13);
+    footer {
       text-align: center;
-      max-width: 350px;
-      margin: auto;
+      color: #888;
+      font-size: 1em;
+      padding: 18px 0 10px 0;
+      background: #f4f6fa;
+      border-top: 1px solid #e0e7ff;
+      margin-top: auto;
     }
-    #verify-modal input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #b3b8e0;
+    @media (max-width: 700px) {
+      .container { padding: 12px 2vw; }
+      .product-list { gap: 18px; }
+      .product { width: 98vw; max-width: 340px; }
+      .product img { width: 90vw; max-width: 220px; height: 140px; }
     }
-    #verify-modal button {
-      margin: 0 6px 0 0;
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 1.08em;
-      transition: background 0.2s;
+    @media (max-width: 500px) {
+      .auth-modal {
+        padding: 18px 4vw 18px 4vw;
+        max-width: 98vw;
+      }
+      .auth-modal h2 {
+        font-size: 1.1em;
+      }
     }
-    #verify-modal button:first-child {
-      background: #2ecc71;
-      color: #fff;
-    }
-    #verify-modal button:last-child {
-      background: #e74c3c;
-      color: #fff;
-    }
-  </style>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>ONGOD PHONE GADGET</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="script.js" defer></script>
-  <style>
-    /* ...existing styles... */
-    /* (No changes needed to your CSS for this update) */
   </style>
 </head>
 <body>
-  <!-- Login/Register Modal -->
-  <div id="login-modal">
-    <div id="login-box">
-      <h2 id="login-title">Login</h2>
-      <input type="text" id="login-email" placeholder="Email" autocomplete="off"><br>
-      <input type="password" id="login-password" placeholder="Password"><br>
-      <button id="login-btn">Login</button>
-      <button id="register-btn" style="display:none;">Register</button>
-      <div>
-        <span class="switch-link" id="switch-to-register">Don't have an account? Register</span>
-        <span class="switch-link" id="switch-to-login" style="display:none;">Already have an account? Login</span>
-      </div>
-      <div id="login-error" style="color:#e74c3c;margin-top:10px;"></div>
+  <header>
+    <h1>Phone Gadget Shop</h1>
+    <div class="header-actions">
+      <button id="login-btn-header">Login</button>
+      <button id="register-btn-header">Register</button>
     </div>
-    <!-- Registration Form Modal -->
-    <div id="register-form-modal">
-      <div>
-        <h2 style="color:#3949ab;">Register</h2>
-        <input type="text" id="email" placeholder="Email" required>
-        <input type="text" id="reg-phone" placeholder="Phone Number" required>
-        <input type="text" id="reg-username" placeholder="Username" required>
-        <input type="password" id="reg-password" placeholder="Password" required>
-        <select id="reg-state" required>
-          <option value="">Select State</option>
-          <option value="Lagos">Lagos</option>
-          <option value="Ogun">Ogun</option>
-          <option value="Oyo">Oyo</option>
-          <option value="Osun">Osun</option>
-          <option value="Ondo">Ondo</option>
-          <option value="Ekiti">Ekiti</option>
-        </select>
-        <select id="reg-area" required>
-          <option value="">Select Area</option>
-        </select>
-        <input type="text" id="reg-street" placeholder="Street" required>
-        <input type="text" id="reg-address" placeholder="Full Address" required>
-        <button>Register</button>
-        <button>Cancel</button>
-        <div id="reg-error" style="color:#e74c3c;margin-top:10px;"></div>
-      </div>
-    </div>
-    <!-- Verification Modal -->
-    <div id="verify-modal">
-      <div>
-        <h2 style="color:#3949ab;">Verify Your Email</h2>
-        <p>A verification code has been sent to your email. Enter it below:</p>
-        <!-- Updated verification code input and buttons -->
-        <input id="verify-code-input" type="text" placeholder="Enter code">
-        <div id="verify-error" style="color:red"></div>
-        <button id="verify-btn">Verify</button>
-        <button id="cancel-verify-btn">Cancel</button>
-      </div>
-    </div>
-  </div>
-  <!-- Main Content -->
-  <div id="main-content" style="display:none;">
-    <div class="header-container">
-      <div class="header-content">
-        <div class="header-logo">
-          <img src="images/Gemini_Generated_Image_63jjax63jjax63jj.png" alt="ONGOD Logo">
-          <span class="header-title">ONGOD PHONE GADGET</span>
-        </div>
-        <div class="header-actions">
-          <img src="images/notificationicon.png" alt="Notification" id="notification-btn">
-        </div>
-      </div>
-    </div>
-    <section class="search-bar">
-      <input type="text" id="search-input" placeholder="Search for gadgets...">
-      <button id="search-btn">Search</button>
-    </section>
-    <main>
-      <h1 class="main-title">Latest Phones, Laptops & Accessories</h1>
-      <div class="section-title">Phones</div>
-      <div id="phones-list" class="Gadget-list"></div>
-      <div class="section-title">Laptops</div>
-      <div id="laptops-list" class="Gadget-list"></div>
-      <div class="section-title">Accessories</div>
-      <div id="accessories-list" class="Gadget-list"></div>
-    </main>
-    <footer class="footer">
-      <p>&copy; 2025 Gadget Store. All rights reserved.</p>
-    </footer>
-    <!-- Modal for Buy Now and Details -->
-    <div id="modal-bg" class="modal-bg" style="display:none;">
-      <div class="modal-content" id="modal-content"></div>
-    </div>
-    <!-- Notification Modal -->
-    <div id="notif-modal" class="modal-bg" style="display:none;">
-      <div class="modal-content" style="max-width:400px;">
-        <button class="close-btn">&times;</button>
-        <h2>Notification History</h2>
-        <div style="color:#888;font-size:0.98em;margin-bottom:8px;">All your notifications and order updates are shown below.</div>
-        <div id="notif-messages" style="text-align:left;max-height:250px;overflow-y:auto;"></div>
-      </div>
-    </div>
-  </div>
-  <section id="loading-screen" style="display:flex;align-items:center;justify-content:center;height:100vh;background:rgba(255,255,255,0.9);position:fixed;top:0;left:0;width:100%;z-index:9999;">
-    <div style="text-align:center;">
-      <img src="images/loading.png" alt="Loading..." style="width:80px;height:80px;">
-      <p style="color:#3949ab;font-size:1.2em;margin-top:16px;">Loading...</p>
-      <div style="margin-top:20px;color:#1a237e;font-size:1.1em;">
-      
-    </div>
+    <p style="margin: 8px 0 0 0; font-size: 1.1em; color: #e0e7ff;">Find the latest phones, laptops, and accessories!</p>
+  </header>
+  <section class="search-bar" id="search-bar" style="display:none;">
+    <input type="text" id="search-input" placeholder="Search for gadgets...">
+    <button id="search-btn">Search</button>
   </section>
-<!-- Customer Care Chat Window -->
-<div id="care-chat-modal" style="display:none;position:fixed;bottom:170px;right:30px;width:320px;max-width:95vw;background:#fff;border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,0.18);z-index:10002;flex-direction:column;">
-  <div style="background:#2ecc71;color:#fff;padding:14px 18px;border-radius:14px 14px 0 0;display:flex;align-items:center;justify-content:space-between;">
-    <span>
-      <img src="images/customer care.jpg" alt="Care" style="width:24px;height:24px;vertical-align:middle;margin-right:6px;">
-      Customer Care
-    </span>
-    <button style="background:none;border:none;color:#fff;font-size:1.3em;cursor:pointer;">&times;</button>
+  <div class="container" id="main-content" style="display:none;">
+    <div class="category-section">
+      <div class="category-title">Phones</div>
+      <div id="phones-list" class="product-list"></div>
+    </div>
+    <div class="category-section">
+      <div class="category-title">Laptops</div>
+      <div id="laptops-list" class="product-list"></div>
+    </div>
+    <div class="category-section">
+      <div class="category-title">Accessories</div>
+      <div id="accessories-list" class="product-list"></div>
+    </div>
   </div>
-  <div id="care-chat-messages" style="padding:12px;max-height:220px;overflow-y:auto;"></div>
-  <form id="care-chat-form" style="display:flex;gap:6px;padding:10px;">
-    <input id="care-chat-input" type="text" placeholder="Type your message..." style="flex:1;padding:8px;border-radius:6px;border:1px solid #b3b8e0;">
-    <button type="submit" style="background:#2ecc71;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;">Send</button>
-  </form>
-</div>
+  <footer>
+    &copy; <span id="year"></span> Phone Gadget Shop. All rights reserved.
+  </footer>
+  <!-- Product Modal -->
+  <div id="modal-bg" class="modal-bg" style="display:none;">
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+  <!-- Login/Register Modal -->
+  <div id="auth-modal-bg" class="auth-modal-bg" style="display:none;">
+    <div class="auth-modal" id="auth-modal"></div>
+  </div>
+  <!-- Notification -->
+  <div id="notification" style="display:none;"></div>
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
